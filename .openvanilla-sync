@@ -1,0 +1,5 @@
+source: Open Vanilla
+commit: 747fdbd649467a990e194c57f04b516e39524431
+subject: Site: portal.html matches index.html again (alpha tag, Vanilla Agents)
+paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
+Made by dev/sync_repos.py. Edit the source, not this copy.
