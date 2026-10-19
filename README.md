@@ -62,6 +62,6 @@ MIT: see [LICENSE](LICENSE).
 
 ## About this repository
 
-This repository is published from **Open Vanilla** (commit `747fdbd649`: Site: portal.html matches index.html again (alpha tag, Vanilla Agents)). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
+This repository is published from **Open Vanilla** (commit `2541a35cd6`: Realm sign-in and loading screens ask for logo.webp?v=ov2, so browsers that kept the old logo for a day fetch the Open Vanilla badge now (realm patch 0026); quest tracker readable: yellow quest titles, light counts and objectives, green Done, dark shadows on a dimmed parchment). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
 
 World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment. No Blizzard game files are included: you need your own.

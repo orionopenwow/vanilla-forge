@@ -431,10 +431,12 @@ T.test("Quests: the tracker lists quests with levels, progress and objectives in
         local row = env["Compass_TrackerQuest" .. i]
         if row and row.key == "Red Silk Bandanas" then r = row end
     end
-    local cr, cg = r.label:GetTextColor()
+    local cr, cg, cb = r.label:GetTextColor()
     if env.Compass_Tracker.skinned then
-        -- on the parchment the difficulty colours are inked darker; red stays clearly red
-        T.near(cr, 0.5, 1e-6); T.near(cg, 0.05, 1e-6, "red: far above you (dark ink)")
+        -- on the parchment every title is the stock tracker's yellow, with a dark shadow
+        T.near(cr, 1, 1e-6); T.near(cg, 0.82, 1e-6); T.near(cb, 0, 1e-6, "quest titles are yellow")
+        local or1, og1, ob1 = r.right:GetTextColor()
+        T.ok(or1 > 0.4 and og1 > 0.8, "counts and Done are light, not dark ink")
     else
         T.near(cr, 1, 1e-6); T.near(cg, 0.1, 1e-6, "red: far above you")
     end
