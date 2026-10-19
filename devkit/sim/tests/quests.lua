@@ -61,6 +61,8 @@ T.test("Quests: the Wildwood ring replaces the stock minimap border by default",
     local p, zrel, rp = env.MinimapZoneTextButton:GetPoint(1)
     T.eq(p .. " " .. rp, "BOTTOM TOP", "zone name above the ring")
     T.eq(zrel, env.Compass_RingFrame)
+    T.eq(env.MinimapZoneTextButton:GetHeight(), 20, "the zone name's box is tall enough for its letters")
+    T.ok(env.MinimapZoneTextButton:GetWidth() >= 140, "and never narrower than the stock box")
     local _, trel = env.MiniMapTrackingFrame:GetPoint(1)
     T.eq(trel, env.Compass_RingFrame, "tracking button on the ring")
 end)

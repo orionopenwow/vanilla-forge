@@ -178,3 +178,24 @@ T.test("Bags: no pouches and nothing to open shows just the Bags lane", function
         T.ok(not env.Vault.laneParts[k] or not env.Vault.laneParts[k].label:IsShown(), k .. " lane hidden")
     end
 end)
+
+T.test("Bags: the stock window look in every skin, with the lanes kept", function()
+    local env = T.addon("Bags")
+    local f = env.Vault_Frame
+    local function check(skin)
+        local p, rel, rp = f.title:GetPoint(1)
+        T.eq(p .. " " .. rp, "TOP TOP", skin .. ": the title sits in the top edge")
+        T.eq(rel, f)
+        T.ok(not f.header or not f.header:IsShown(), skin .. ": no plaque above the window")
+        T.has(f:GetBackdrop().edgeFile, "UI-DialogBox-Border", skin .. ": the stock dialog border")
+        local r, g, b = f.title:GetTextColor()
+        T.near(r, 1, 1e-6); T.near(g, 0.82, 1e-6, skin .. ": gold title")
+        local cp = f.closeButton:GetPoint(1)
+        T.eq(cp, "TOPRIGHT", skin .. ": the red X in the corner")
+    end
+    check("default")
+    for _, key in ipairs({ "classic", "brass", "slick" }) do
+        if env.WenillaCore.UI.SetSkin then env.WenillaCore.UI.SetSkin(key) elseif env.WenillaCore.UI.ApplySkin then env.WenillaCore.UI.ApplySkin() end
+        check(key)
+    end
+end)

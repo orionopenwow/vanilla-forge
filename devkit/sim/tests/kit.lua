@@ -125,3 +125,29 @@ T.test("Kit: plain names, old names still resolve, new addons join in order", fu
         if t and t.meta.Title then T.lacks(t.meta.Title, "Classic+", toc .. " title is plain") end
     end
 end)
+
+T.test("Kit: bottom tabs glow only on the chosen tab and under the mouse", function()
+    local env = T.addon("WenillaCore")
+    local UI = env.WenillaCore.UI
+    local holder = env.CreateFrame("Frame", "KitTabHolder", env.UIParent)
+    local bar = UI.ClassicTabs(holder, { tabs = { { key = "a", label = "Suggested Content" }, { key = "b", label = "Dungeons" }, { key = "c", label = "Raids" } } })
+    local a, b, c = bar.buttons[1], bar.buttons[2], bar.buttons[3]
+    T.ok(a.hl:IsShown(), "the chosen tab glows")
+    T.no(b.hl:IsShown(), "the others don't"); T.no(c.hl:IsShown())
+    api.enter(c)
+    T.ok(c.hl:IsShown(), "hover glows")
+    api.leave(c)
+    T.no(c.hl:IsShown(), "and stops")
+    api.click(b)
+    T.ok(b.hl:IsShown()); T.no(a.hl:IsShown(), "the glow follows the choice")
+end)
+
+T.test("Kit: a faint alpha tag sits in the bottom-right corner and never takes the mouse", function()
+    local env = T.addon("WenillaCore")
+    local t = env.WenillaCore_AlphaTag
+    T.shown(t)
+    T.has(env.WenillaCore_AlphaTagText:GetText(), "Alpha test v")
+    local p = t:GetPoint(1)
+    T.eq(p, "BOTTOMRIGHT")
+    T.ok(env.WenillaCore_AlphaTagText:GetAlpha() < 0.5, "subtle")
+end)

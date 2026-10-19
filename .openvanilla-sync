@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 2541a35cd64c8de337558b70bca7fee6080e8ee1
-subject: Realm sign-in and loading screens ask for logo.webp?v=ov2, so browsers that kept the old logo for a day fetch the Open Vanilla badge now (realm patch 0026); quest tracker readable: yellow quest titles, light counts and objectives, green Done, dark shadows on a dimmed parchment
+commit: 61051ef055c43c2f132bff735c0ad6fe3c279e46
+subject: Solo page: hide the Azeroth Survivors heading too while the panel is hidden
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
