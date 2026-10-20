@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: ed4f3f7e06c85b32016efd5a029290ba3297b572
-subject: Release 1.30.9
+commit: b5b44fceb74c2d06afe667a0e105f0e9599878e7
+subject: Bug reports also open a public GitHub issue (Herald), for suggested fixes
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
