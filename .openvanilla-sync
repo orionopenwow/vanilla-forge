@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 61051ef055c43c2f132bff735c0ad6fe3c279e46
-subject: Solo page: hide the Azeroth Survivors heading too while the panel is hidden
+commit: 8fcc10b75d6ad07015b4206c6dce7d8d9e8ea950
+subject: Work in progress
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.

@@ -86,8 +86,11 @@ T.test("Chat World: a World tab after the chat tabs, on by default, with the Dis
     local t = A.CPChatWorldTab
     T.shown(t, "World tab")
     T.eq(A.CPChatWorldTabText:GetText(), "World")
-    local _, rel = t:GetPoint(1)
-    T.eq(rel, A.ChatFrame2Tab, "right after the last docked tab")
+    -- on the tab strip, right after the last docked tab (both are placed on the chat bar)
+    local _, rel, _, x = t:GetPoint(1)
+    local _, rel2, _, x2 = A.ChatFrame2Tab:GetPoint(1)
+    T.eq(rel, A.CPChatBar); T.eq(rel2, A.CPChatBar)
+    T.eq(x, x2 + A.ChatFrame2Tab:GetWidth() + A.CPChat.TAB_GAP, "right after the last docked tab")
     T.shown(A.CPChatWorldTabDiscord, "Discord mark on the tab")
     T.has(A.CPChatWorldTabDiscord:GetTexture(), "Chat_Discord", "generated art")
     T.eq(t.cpLine:GetAlpha(), 0, "not selected")
@@ -181,6 +184,10 @@ T.test("Chat World: hiding the tab puts World and [D] lines in the main window",
     local A, B = pair()
     api.click(A.CPChatWorldTab)
     api.click(A.CPChatWorldTab, "RightButton")
+    T.shown(A.WenillaCore_Menu, "a right-click opens the tab's menu")
+    T.ok(A.CPChat:Get("worldTab"), "and never hides the tab by itself")
+    T.shown(A.CPChatWorldTab)
+    api.click_text(A, "Hide this tab", A.WenillaCore_Menu)
     T.no(A.CPChat:Get("worldTab"), "setting off")
     T.hidden(A.CPChatWorldTab)
     T.hidden(A.CPChatWorldFrame, "left the World view")
@@ -300,4 +307,19 @@ T.test("Chat World: .wnl worldoff typed by hand turns the setting off (WO 0)", f
     T.no(A.CPChat:Get("worldJoin"), "the server's word wins")
     api.tick(A, 6)
     T.eq(sent(A)["worldon"], nil, "and is not fought")
+end)
+
+T.test("Chat World: tabs hidden by a stray right-click in an older version come back once", function()
+    local A = chat()
+    A.CPChat:SetOption("worldTab", false)
+    A.WenillaCore:Settings("Guilds").showChatTab = false
+    A.WenillaCore:Settings(A.CPChat.ID).tabsRestored = nil
+    A.CPChat.tabsChecked = nil
+    api.fire(A, "PLAYER_ENTERING_WORLD")
+    T.ok(A.CPChat:Get("worldTab"), "the World tab is back")
+    T.ok(A.WenillaCore:Settings("Guilds").showChatTab, "the Guild tab is back")
+    A.CPChat:SetOption("worldTab", false)
+    A.CPChat.tabsChecked = nil
+    api.fire(A, "PLAYER_ENTERING_WORLD")
+    T.no(A.CPChat:Get("worldTab"), "only once: hiding it on purpose afterwards sticks")
 end)
