@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 4e0c2c243475070f60a5114725dbd7d953f5fac2
-subject: Meters "Window.lua:31: ROW_X (a nil value)": stale addon files on Warfront and Duels, and in the Workshop
+commit: 1360266ab8f69cd2ecef2b8d0734a01806f7a257
+subject: Players' reports #20-#24: target health number, buff durations, menus on screen, walking over windows, Quest Log button
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
