@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: c50bd98dab5817c8b86344cfc3fb63e106730088
-subject: Realm patches 0033-0034: Herald no longer goes AFK or through hills; Alt+Enter full screen
+commit: 288a6078963e0259ff034ef51fcbf784c4a6ed4e
+subject: Release 1.35.0
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
