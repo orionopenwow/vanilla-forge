@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 288a6078963e0259ff034ef51fcbf784c4a6ed4e
-subject: Release 1.35.0
+commit: 77d592888e942cf7e031cd9f057216eade68786f
+subject: Mangos patch 0022: a Star Pouch opened again with its loot all taken is spent, not an empty loot window
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
