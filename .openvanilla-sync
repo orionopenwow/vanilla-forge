@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 0152b7c18813140b2648a9379436aa493a715dc3
-subject: Touch: a game button presses in under the finger and lets out on lift
+commit: d1583ef7d31897a766fff1be3824449f73b01e8d
+subject: Release 1.38.0
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
