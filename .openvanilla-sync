@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 8fa8928e546a7fb64403c24e1667894a4eb40ae2
-subject: Release 1.36.0
+commit: 4e0c2c243475070f60a5114725dbd7d953f5fac2
+subject: Meters "Window.lua:31: ROW_X (a nil value)": stale addon files on Warfront and Duels, and in the Workshop
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
