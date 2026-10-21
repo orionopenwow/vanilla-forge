@@ -9,8 +9,8 @@ T.test("Meters: CH snapshot fills the window, sorted, with share and DPS", funct
     api.tick(env, 0.6)
     T.shown(env.Chronicle_Frame)
     local text = table.concat(rows(env), "\n")
-    T.has(text, "Ilyndra"); T.has(text, "24.0k (1200)"); T.has(text, "60.0%")
-    T.has(text, "Brakkus"); T.has(text, "16.0k (800)"); T.has(text, "40.0%")
+    T.has(text, "Ilyndra"); T.has(text, "24,000 (1,200 DPS)  60.00%")
+    T.has(text, "Brakkus"); T.has(text, "16,000 (800 DPS)  40.00%")
     T.lacks(text, "Junk", "a row with a bad total is dropped")
     T.has(text, "server  0:20", "footer: source and encounter length (24000/1200 s)")
     local first = api.find_text(env, "Ilyndra", env.Chronicle_Frame)
@@ -60,7 +60,7 @@ T.test("Meters: combat log for you, your pet and your party; outsiders ignored",
     T.has(text, "Herald"); T.has(text, "Brakkus"); T.has(text, "last fight")
     env.__slash("/dps heal")
     api.tick(env, 0.6)
-    T.eq(env.Chronicle_Frame.title:GetText(), "Meters - Healing")
+    T.eq(env.Chronicle_Frame.title:GetText(), "Healing")
     T.has(table.concat(rows(env), "\n"), "Healing")
 end)
 
@@ -87,8 +87,8 @@ T.test("Meters: clicking a row shows the ability breakdown and asks the server",
     T.eq(env.__wnl[2], "ch inspect Ilyndra")
     local tip = api.tooltip_text(env)
     T.has(tip, "Ilyndra  Damage")
-    T.has(tip, "Fireball  =  8000  57.1%")
-    T.has(tip, "Frostbolt  =  6000  42.9%")
+    T.has(tip, "Fireball  =  8,000  57.1%")
+    T.has(tip, "Frostbolt  =  6,000  42.9%")
 end)
 
 T.test("Meters: local breakdown without the server; inspectOnClick off", function()
@@ -241,7 +241,7 @@ T.test("Meters: damage by spell with hits, crits, misses, average, largest; DPS;
     T.eq(list[1].name, "Herald")
     T.near(list[1].perSec, 51, 0.6)
     T.eq(total, 600)
-    T.has(table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n"), "510 (51)")
+    T.has(table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n"), "510 (51 DPS)")
     -- the breakdown window: spells with their numbers, then targets
     api.click_text(env, "Herald", env.Chronicle_Frame)
     T.shown(env.Chronicle_Detail)
@@ -258,8 +258,8 @@ T.test("Meters: damage by spell with hits, crits, misses, average, largest; DPS;
     env.__slash("/meters taken")
     api.tick(env, 0.6)
     text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.eq(env.Chronicle_Frame.title:GetText(), "Meters - Damage Taken")
-    T.has(text, "Herald"); T.has(text, "Brakkus"); T.has(text, "83.3%")
+    T.eq(env.Chronicle_Frame.title:GetText(), "Damage Taken")
+    T.has(text, "Herald"); T.has(text, "Brakkus"); T.has(text, "83.33%")
 end)
 
 T.test("Meters: healing, HPS, estimated overhealing (unknown when health is not visible), healing taken", function()
@@ -291,12 +291,12 @@ T.test("Meters: healing, HPS, estimated overhealing (unknown when health is not 
     env.__slash("/meters overheal")
     api.tick(env, 0.6)
     local text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.has(text, "Overhealing"); T.has(text, "64.7%"); T.has(text, "110")
+    T.has(text, "Overhealing"); T.has(text, "110  64.71%")
     env.__slash("/meters hps")
     api.tick(env, 0.6)
     text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.has(text, "HPS (Amount)")
-    T.has(text, " (250)", "HPS first, then the total")
+    T.has(text, "HPS")
+    T.has(text, " HPS (250)", "HPS first, then the total")
     T.near(C:RowsFor("hps", C.fight, "current")[1].perSec, 250 / C:Duration(C.fight), 0.01)
     env.__slash("/meters healed")
     api.tick(env, 0.6)
@@ -394,7 +394,7 @@ T.test("Meters: interrupts, dispels, crowd control, resurrects, resources and fr
         return table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
     end
     local text = show("interrupts")
-    T.has(text, "Interrupts"); T.has(text, "Count"); T.has(text, "66.7%")
+    T.has(text, "Interrupts"); T.has(text, "66.67%")
     T.has(show("dispels"), "Ilyndra")
     text = show("cc")
     T.has(text, "Zapp"); T.has(text, "Crowd Control")
@@ -421,7 +421,7 @@ T.test("Meters: your buff and debuff uptime", function()
     env.__slash("/meters uptime")
     api.tick(env, 0.1)
     local text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.has(text, "Buff & Debuff Uptime"); T.has(text, "Rapid Fire"); T.has(text, "0:05  50.0%")
+    T.has(text, "Buff & Debuff Uptime"); T.has(text, "Rapid Fire"); T.has(text, "0:05  50.00%")
     -- the fight ends; its uptime is kept with it and in the overall
     combat(env, false)
     api.tick(env, 8)
@@ -470,11 +470,11 @@ T.test("Meters: fights - bosses named and kept, trash merged, overall, 25 kept, 
     T.has(text, "Current fight"); T.has(text, "Overall"); T.has(text, "Ragnaros"); T.has(text, "Trash - Defias Thug (2 fights)")
     api.click_text(env, "Ragnaros", env.WenillaCore_Menu)
     text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.has(text, "Ragnaros  0:01"); T.has(text, "1000")
+    T.has(text, "Ragnaros  0:01"); T.has(text, "1,000")
     api.click(env.Chronicle_Frame.segBtn)
     api.click_text(env, "Overall", env.WenillaCore_Menu)
     text = table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n")
-    T.has(text, "Overall"); T.has(text, "1280")
+    T.has(text, "Overall"); T.has(text, "1,280")
     T.eq(env.Meters_Layout.windows[1].tabs[1].seg, "overall")
     -- 25 earlier fights at most; bosses outlive trash
     for i = 1, 30 do fight("Onyxia", 1) end
@@ -503,63 +503,185 @@ T.test("Meters: tabs - add, rename, reorder, tear off, survive a relog, dock bac
     local env = T.addon("Meters")
     local f = env.Chronicle_Frame
     api.fire(env, "CHAT_MSG_COMBAT_SELF_HITS", "You hit Hogger for 100.")
-    api.click(f.tabs:Button("__add"))
     local L = env.Meters_Layout
-    T.eq(table.getn(L.windows[1].tabs), 2)
-    T.eq(L.windows[1].tabs[2].mode, "dps", "a new tab takes the next unused mode")
-    T.eq(f.title:GetText(), "Meters - DPS")
+    -- a new window starts with Damage, DPS, Healing and Deaths, Damage chosen
+    T.eq(table.getn(L.windows[1].tabs), 4)
+    for k, mode in ipairs({ "dmg", "dps", "heal", "deaths" }) do T.eq(L.windows[1].tabs[k].mode, mode) end
+    T.eq(f.title:GetText(), "Damage")
+    api.click(f.tabs:Button("2"))
+    T.eq(f.title:GetText(), "DPS", "the tabs are shortcuts to the modes")
+    api.click(f.tabs:Button("__add"))
+    T.eq(table.getn(L.windows[1].tabs), 5)
+    T.eq(L.windows[1].tabs[5].mode, "hps", "a new tab takes the next unused mode")
+    T.eq(f.title:GetText(), "HPS")
     -- rename from the right-click menu
-    api.click(f.tabs:Button("2"), "RightButton")
+    api.click(f.tabs:Button("5"), "RightButton")
     api.click_text(env, "Rename", env.WenillaCore_Menu)
     T.shown(env.Meters_RenameBox)
     api.type(env.Meters_RenameBox, "Burst")
     api.press_enter(env.Meters_RenameBox)
     T.hidden(env.Meters_RenameBox)
-    T.eq(L.windows[1].tabs[2].name, "Burst")
+    T.eq(L.windows[1].tabs[5].name, "Burst")
     T.has(table.concat(api.visible_texts(env, f), "\n"), "Burst")
     -- move it left
-    api.click(f.tabs:Button("2"), "RightButton")
+    api.click(f.tabs:Button("5"), "RightButton")
     api.click_text(env, "Move left", env.WenillaCore_Menu)
-    T.eq(L.windows[1].tabs[1].id, 2)
-    -- the first tab back to Damage, then a Healing tab torn off into its own window
+    T.eq(L.windows[1].tabs[4].id, 5)
+    -- back to Damage, then the Healing tab torn off into its own window
     api.click(f.tabs:Button("1"))
-    T.eq(f.title:GetText(), "Meters")
-    api.click(f.tabs:Button("__add"))
-    local healId = L.windows[1].tabs[3].id
-    env.Chronicle:SetTabMode(1, healId, "heal")
-    api.click(f.tabs:Button(tostring(healId)), "RightButton")
+    T.eq(f.title:GetText(), "Damage")
+    api.click(f.tabs:Button("3"), "RightButton")
     api.click_text(env, "Tear off into its own window", env.WenillaCore_Menu)
     T.eq(table.getn(L.windows), 2)
-    T.eq(table.getn(L.windows[1].tabs), 2)
+    T.eq(table.getn(L.windows[1].tabs), 4)
     T.eq(L.windows[2].tabs[1].mode, "heal")
     T.shown(env.Chronicle_Frame2)
-    T.eq(env.Chronicle_Frame2.title:GetText(), "Meters - Healing")
+    T.eq(env.Chronicle_Frame2.title:GetText(), "Healing")
     -- all of it is saved per character
     env = T.relog(env)
     L = env.Meters_Layout
     T.eq(table.getn(L.windows), 2)
-    T.eq(L.windows[1].tabs[1].name, "Burst")
+    T.eq(L.windows[1].tabs[3].name, "Burst")
     T.shown(env.Chronicle_Frame2, "the torn-off window comes back")
-    T.eq(env.Chronicle_Frame2.title:GetText(), "Meters - Healing")
+    T.eq(env.Chronicle_Frame2.title:GetText(), "Healing")
     T.has(table.concat(api.visible_texts(env, env.Chronicle_Frame), "\n"), "Burst")
     -- closing the torn-off window docks its tab back into the main one
     api.click(env.Chronicle_Frame2.closeButton)
     T.hidden(env.Chronicle_Frame2)
     T.eq(table.getn(L.windows), 1)
-    T.eq(table.getn(L.windows[1].tabs), 3)
+    T.eq(table.getn(L.windows[1].tabs), 5)
     -- close a tab; the last tab of the main window cannot be closed
     f = env.Chronicle_Frame
-    api.click(f.tabs:Button("2"), "RightButton")
+    api.click(f.tabs:Button("5"), "RightButton")
     api.click_text(env, "Close tab", env.WenillaCore_Menu)
-    T.eq(table.getn(L.windows[1].tabs), 2)
-    for _, t in ipairs(L.windows[1].tabs) do T.ok(t.id ~= 2) end
-    env.Chronicle:CloseTab(1, L.windows[1].tabs[1].id)
-    env.Chronicle:CloseTab(1, L.windows[1].tabs[1].id)
+    T.eq(table.getn(L.windows[1].tabs), 4)
+    for _, t in ipairs(L.windows[1].tabs) do T.ok(t.id ~= 5) end
+    for _ = 1, 4 do env.Chronicle:CloseTab(1, L.windows[1].tabs[1].id) end
     T.eq(table.getn(L.windows[1].tabs), 1, "the main window keeps one tab")
-    -- a broken saved layout falls back to one Damage tab
+    -- a broken saved layout falls back to the four tabs
     env.Meters_Layout = { windows = { { tabs = { { mode = "nope" } } } } }
     env = T.relog(env)
     T.eq(env.Meters_Layout.windows[1].tabs[1].mode, "dmg")
+    T.eq(table.getn(env.Meters_Layout.windows[1].tabs), 4)
+end)
+
+T.test("Meters: a layout from before the four tabs gets them; a changed one is left alone", function()
+    local env = T.addon("Meters")
+    env.Meters_Layout = { version = 1, nextTab = 2, windows = { { tabs = { { id = 1, mode = "dmg", seg = "current" } }, active = 1 } } }
+    env = T.relog(env)
+    local L = env.Meters_Layout
+    T.eq(table.getn(L.windows[1].tabs), 4)
+    T.eq(L.windows[1].active, 1)
+    T.eq(L.version, 2)
+    env.Meters_Layout = { version = 1, nextTab = 3, windows = { { tabs = { { id = 1, mode = "dmg", seg = "current", name = "Mine" } }, active = 1 } } }
+    env = T.relog(env)
+    T.eq(table.getn(env.Meters_Layout.windows[1].tabs), 1, "a renamed tab means the player set it up")
+end)
+
+T.test("Meters: the bronze window - header title, arrow, reset, cog, close, gold tabs, textured bars", function()
+    local env = T.addon("Meters")
+    local C, f = env.Chronicle, env.Chronicle_Frame
+    T.eq(env.WenillaCore:Setting("Meters", "maxRows"), 8, "eight rows by default")
+    env.ClassicPlus_Manager:SetSetting("Meters", "maxRows", 5)
+    api.server_packet(env, "CH", "Brakkus,1,16000,800;Ilyndra,8,24000,1200;Zapp,8,1234,61;Mol,9,900,40;Tess,3,800,40;Rook,4,700,35")
+    api.tick(env, 0.6)
+    T.eq(f.title:GetText(), "Damage")
+    T.eq(f.arrow:GetTexture(), C.ART.arrow)
+    T.eq(f.closeButton:GetNormalTexture():GetTexture(), C.ART.close)
+    T.eq(f.gear.icon:GetTexture(), C.ART.gear)
+    T.eq(f.reset.icon:GetTexture(), C.ART.reset)
+    T.eq(f.chrome[1]:GetTexture(), C.ART.window, "the stone window from the kit")
+    -- the chosen tab is gold, the others dark
+    local on, off = f.tabs:Button("1"), f.tabs:Button("2")
+    T.eq(on.ov[2]:GetTexture(), C.ART.tabOn)
+    T.eq(off.ov[2]:GetTexture(), C.ART.tabOff)
+    -- three slices: fixed 6 px caps, a stretched middle; every tab on whole pixels, 18 px tall
+    T.eq(on.ov[1]:GetWidth(), C.TAB_CAP); T.eq(on.ov[3]:GetWidth(), C.TAB_CAP)
+    for _, b in ipairs(f.tabs.buttons) do
+        if b:IsShown() then
+            local w = b:GetWidth()
+            T.eq(w, math.floor(w), "whole-pixel tab width")
+            T.eq(b:GetHeight(), C.TAB_H)
+            T.ok(w >= 2 * C.TAB_CAP + 1, "room for both caps")
+        end
+    end
+    -- the reset and cog read only their 20x20 texels
+    local _, right = f.reset.icon:GetTexCoord()
+    T.near(right or 0, 20 / 32, 0.001, "the button texels only")
+    api.click(off)
+    T.eq(off.ov[2]:GetTexture(), C.ART.tabOn, "a click moves the gold")
+    T.eq(on.ov[2]:GetTexture(), C.ART.tabOff)
+    api.click(on)
+    -- rows: one flat rectangle each, packed together, a dark background the full width, the fill from
+    -- the left edge, no border round it; the text in the rounded font, off-white, a soft shadow
+    local row = f.rows[1]
+    T.eq(C.TEXTURES[1].value, "bronze"); T.eq(C.TEXTURES[1].path, C.ART.fill, "the default fill is the flat grain")
+    local p1 = { row.bar:GetPoint(1) }
+    T.eq(p1[1], "TOPLEFT"); T.eq(p1[2], row, "the fill starts at the row's left edge, under the icon")
+    T.ok(row.iconBox:GetFrameLevel() > row.bar:GetFrameLevel(), "the icon draws over the fill")
+    T.eq(row.rim, nil, "no border round the fill")
+    T.eq(C.ART.rim, nil)
+    local _, _, _, _, y1 = f.rows[1]:GetPoint(1)
+    local _, _, _, _, y2 = f.rows[2]:GetPoint(1)
+    T.eq(y1 - y2, f.rows[1]:GetHeight(), "rows touch: no gap")
+    T.eq(row.iconBox:GetHeight(), row:GetHeight() - 2, "the icon is the row height less 2")
+    local font = { row.left:GetFont() }
+    T.eq(font[1], C.FONT_ROUNDED, "names in the rounded font"); T.eq(font[3], "", "no outline")
+    T.ok(font[2] >= 10 and font[2] <= 11, "10-11 px in the 18 px rows")
+    local rfont = { row.right:GetFont() }
+    T.eq(rfont[1], C.FONT_ROUNDED)
+    T.eq(env.WenillaCore:Setting("Meters", "rowFont"), "rounded")
+    -- the font ships with the addon, licence beside it
+    local fh = io.open(api.addons_dir(env) .. "/Meters/Fonts/Nunito-ExtraBold.ttf", "rb")
+    T.ok(fh ~= nil, "the font file ships"); if fh then fh:close() end
+    local lh = io.open(api.addons_dir(env) .. "/Meters/Fonts/OFL.txt", "rb")
+    T.ok(lh ~= nil, "the OFL licence ships beside it"); if lh then lh:close() end
+    -- the way back: Row font = Arial Narrow
+    env.ClassicPlus_Manager:SetSetting("Meters", "rowFont", "narrow")
+    C:ApplySettings()
+    font = { row.left:GetFont() }
+    T.eq(font[1], "Fonts\\ARIALN.TTF", "the setting switches to Arial Narrow")
+    env.ClassicPlus_Manager:SetSetting("Meters", "rowFont", "rounded")
+    C:ApplySettings()
+    T.eq(({ row.left:GetFont() })[1], C.FONT_ROUNDED)
+    -- shadows: a soft one round the window, an inner one over the rows
+    T.eq(table.getn(f.shadow), 9, "a 9-slice outer shadow")
+    T.eq(f.shadow[1]:GetTexture(), C.ART.shadow)
+    T.shown(f.inner)
+    T.eq(f.inner.top:GetTexture(), C.ART.innerShadow)
+    T.ok(f.inner:GetFrameLevel() > row:GetFrameLevel(), "the inner shadow lies over the rows")
+    -- tab text: the rounded bold, gold when chosen, parchment otherwise
+    T.eq(({ on.text:GetFont() })[1], C.TAB_FONT)
+    local tr, tg, tb = on.text:GetTextColor()
+    T.near(tr, 1, 0.01); T.near(tg, 0.82, 0.01); T.near(tb, 0.42, 0.01)
+    local ur = off.text:GetTextColor()
+    T.ok(ur < 0.9, "the unchosen tab muted")
+    local nr = row.left:GetTextColor()
+    local vr = row.right:GetTextColor()
+    T.ok(nr < 1 and vr < nr, "off-white names, the numbers a touch dimmer")
+    T.eq(f.hMode:GetText(), "Player")
+    T.eq(f.hVal:GetText(), "Damage")
+    -- the Meters colours: the mage cyan-blue, the warrior red, ~0.9 opaque; Standard: warrior tan
+    local r, g, b, a = row.bar:GetStatusBarColor()
+    local mage = env.RAID_CLASS_COLORS.MAGE
+    T.near(r, mage.r, 0.01); T.near(g, mage.g, 0.01); T.near(b, mage.b, 0.01); T.near(a, 0.9, 0.01)
+    T.eq(env.WenillaCore:Setting("Meters", "classPalette"), "meters")
+    local wr, wg, wb = C.BarColor("WARRIOR")
+    T.near(wr, 0.78, 0.01); T.near(wg, 0.2, 0.01)
+    env.ClassicPlus_Manager:SetSetting("Meters", "classPalette", "standard")
+    wr, wg, wb = C.BarColor("WARRIOR")
+    T.near(wr, env.RAID_CLASS_COLORS.WARRIOR.r, 0.01); T.near(wg, env.RAID_CLASS_COLORS.WARRIOR.g, 0.01)
+    env.ClassicPlus_Manager:SetSetting("Meters", "classPalette", "meters")
+    -- more players than rows: the gold scrollbar, and its click scrolls
+    T.shown(f.scroll)
+    C:RenderWindow(1)
+    f.offset = 1
+    C:RenderWindow(1)
+    T.has(table.concat(api.visible_texts(env, f), "\n"), "Rook")
+    -- reset from the header clears the fights
+    api.click(f.reset)
+    api.tick(env, 0.6)
+    T.lacks(table.concat(api.visible_texts(env, f), "\n"), "Ilyndra")
 end)
 
 T.test("Meters: the mode menu (with icons) and the Threat entry", function()
@@ -577,7 +699,7 @@ T.test("Meters: the mode menu (with icons) and the Threat entry", function()
     T.shown(b.icon, "menu entries carry their icon")
     T.eq(b.icon:GetTexture(), "Interface\\Icons\\Ability_Kick")
     api.click(b)
-    T.eq(f.title:GetText(), "Meters - Interrupts")
+    T.eq(f.title:GetText(), "Interrupts")
     T.eq(env.Meters_Layout.windows[1].tabs[1].mode, "interrupts")
     -- Threat: no threat yet -> a hint; with threat -> its window comes up
     api.click(f.dragHandle)
@@ -627,12 +749,15 @@ T.test("Meters: the settings sheet - rows, bar height, text, texture, numbers, h
     T.shown(sh)
     T.has(table.concat(api.visible_texts(env, sh), "\n"), "Meters settings")
     -- number format
-    T.eq(sh.numberChoice.value:GetText(), "1.2k")
-    api.click(sh.numberChoice.button)
-    T.eq(env.WenillaCore:Setting("Meters", "numberFormat"), "full")
-    api.tick(env, 0.6)
+    T.eq(sh.numberChoice.value:GetText(), "1,234", "full numbers by default, as 12,453 (385 DPS) 25.58%")
     local text = table.concat(api.visible_texts(env, f), "\n")
-    T.has(text, "24,000 (1,200)"); T.has(text, "1,234 (61)")
+    T.has(text, "24,000 (1,200 DPS)  58.20%"); T.has(text, "1,234 (61 DPS)  2.99%")
+    api.click(sh.numberChoice.button)
+    T.eq(env.WenillaCore:Setting("Meters", "numberFormat"), "short")
+    api.tick(env, 0.6)
+    text = table.concat(api.visible_texts(env, f), "\n")
+    T.has(text, "24.0k (1200 DPS)"); T.has(text, "1234 (61 DPS)")
+    api.click(sh.numberChoice.button)
     -- rows
     slide(sh.rowsSlider, 1)
     T.eq(env.WenillaCore:Setting("Meters", "maxRows"), 1)
@@ -643,12 +768,13 @@ T.test("Meters: the settings sheet - rows, bar height, text, texture, numbers, h
     slide(sh.heightSlider, 24)
     T.eq(f.rows[1]:GetHeight(), 24)
     api.click(sh.fontChoice.button)
-    T.eq(env.WenillaCore:Setting("Meters", "fontSize"), 11)
+    T.eq(env.WenillaCore:Setting("Meters", "fontSize"), 11, "10 pt by default, one step up")
     local tex
     f.rows[1].bar.SetStatusBarTexture = function(_, t) tex = t end
+    T.eq(env.WenillaCore:Setting("Meters", "barTexture"), "bronze", "the bronze bars by default")
     api.click(sh.textureChoice.button)
-    T.eq(env.WenillaCore:Setting("Meters", "barTexture"), "flat")
-    T.eq(tex, "Interface\\Tooltips\\UI-Tooltip-Background", "every bar gets the new texture")
+    T.eq(env.WenillaCore:Setting("Meters", "barTexture"), "glossy")
+    T.eq(tex, "Interface\\TargetingFrame\\UI-StatusBar", "every bar gets the new texture")
     -- class colours off: grey bars
     api.click(sh.classSwitch.switch)
     T.eq(env.WenillaCore:Setting("Meters", "classColors"), false)
@@ -718,8 +844,8 @@ T.test("Meters: reports go to chat one line per player, throttled, without colou
     T.eq(table.getn(log), 3)
     T.eq(log[1].kind, "PARTY")
     T.eq(log[1].msg, "Meters: Damage - Current fight - Hogger (0:04)")
-    T.eq(log[2].msg, "1. Herald 3000 (750/s, 75.0%)")
-    T.eq(log[3].msg, "2. Brakkus 1000 (250/s, 25.0%)")
+    T.eq(log[2].msg, "1. Herald 3,000 (750/s, 75.0%)")
+    T.eq(log[3].msg, "2. Brakkus 1,000 (250/s, 25.0%)")
     for _, l in ipairs(log) do T.no(string.find(l.msg, "|", 1, true), "no escape codes in chat") end
     -- not in a raid
     C:Report(1, "RAID")
@@ -736,7 +862,7 @@ T.test("Meters: reports go to chat one line per player, throttled, without colou
     -- slash: /meters report say 1 -> header + one line
     env.__slash("/meters report say 1")
     api.tick(env, 2)
-    T.eq(log[7].kind, "SAY"); T.has(log[8].msg, "1. Herald 3000 (")
+    T.eq(log[7].kind, "SAY"); T.has(log[8].msg, "1. Herald 3,000 (")
     T.eq(log[9], nil)
     -- deaths report
     api.fire(env, "CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS", "Hogger hits Brakkus for 77.")
