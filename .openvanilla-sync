@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 1360266ab8f69cd2ecef2b8d0734a01806f7a257
-subject: Players' reports #20-#24: target health number, buff durations, menus on screen, walking over windows, Quest Log button
+commit: 1397e88cfc168a8819c659ebfc675ce375f86c22
+subject: Release 1.37.0
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
