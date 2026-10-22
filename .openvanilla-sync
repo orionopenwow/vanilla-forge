@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 126b5f806697b7d4a88e18532362007cd0fd05dc
-subject: duels_up.sh: SQL as the database container's own root user; update starts realmd and shows the setup token
+commit: 4ed821672035f69f25c23293d24a952c912fbbc7
+subject: duels_up.sh: declare the live game data volume as external in the override
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
