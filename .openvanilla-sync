@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: efd9fa1a162a89b9e4ee63d9a9d4310be3ea225c
-subject: Realm patch 0035: Duels, straight into the world (?duel=)
+commit: 8bc8831373fb1627b9cd34291af82eda4db416c7
+subject: Release 1.39.0
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.

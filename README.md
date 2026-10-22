@@ -62,6 +62,6 @@ MIT: see [LICENSE](LICENSE).
 
 ## About this repository
 
-This repository is published from **Open Vanilla** (commit `efd9fa1a16`: Realm patch 0035: Duels, straight into the world (?duel=)). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
+This repository is published from **Open Vanilla** (commit `8bc8831373`: Release 1.39.0). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
 
 World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment. No Blizzard game files are included: you need your own.
