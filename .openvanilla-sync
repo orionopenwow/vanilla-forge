@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 4ed821672035f69f25c23293d24a952c912fbbc7
-subject: duels_up.sh: declare the live game data volume as external in the override
+commit: c506b6ca293e58e5270abe8f2e440cb577414a30
+subject: duels_up.sh: SQL as the world server's database user; start and update skip db-init
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
