@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: c506b6ca293e58e5270abe8f2e440cb577414a30
-subject: duels_up.sh: SQL as the world server's database user; start and update skip db-init
+commit: a7fd21bf0b437d792ed6f1592299d4670170554d
+subject: duels_up.sh: the Duels web service reaches its own database, console and game servers by names only its stack has
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
