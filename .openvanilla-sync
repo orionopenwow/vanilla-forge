@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 8bc8831373fb1627b9cd34291af82eda4db416c7
-subject: Release 1.39.0
+commit: 126b5f806697b7d4a88e18532362007cd0fd05dc
+subject: duels_up.sh: SQL as the database container's own root user; update starts realmd and shows the setup token
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
