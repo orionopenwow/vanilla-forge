@@ -62,6 +62,6 @@ MIT: see [LICENSE](LICENSE).
 
 ## About this repository
 
-This repository is published from **Open Vanilla** (commit `4e717e7bff`: Duels: offer only the race/class pairs its world server can make). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
+This repository is published from **Open Vanilla** (commit `e11f02fd65`: duels_up.sh: put back Duels Lite and everything 4e717e7 overwrote; keep only its combos.json mount). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
 
 World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment. No Blizzard game files are included: you need your own.

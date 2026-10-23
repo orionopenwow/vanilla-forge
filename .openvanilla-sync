@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 4e717e7bff6810c7a9115f44c9e8b14e657d660c
-subject: Duels: offer only the race/class pairs its world server can make
+commit: e11f02fd653b0ce307f9ffb326b024d6d8e25cbb
+subject: duels_up.sh: put back Duels Lite and everything 4e717e7 overwrote; keep only its combos.json mount
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
