@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 889290ee7a8c5f5d5f1166f72c1bb74783a4f5c2
-subject: Release 1.41.0
+commit: 4e717e7bff6810c7a9115f44c9e8b14e657d660c
+subject: Duels: offer only the race/class pairs its world server can make
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
