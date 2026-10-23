@@ -1,5 +1,5 @@
 source: Open Vanilla
-commit: 4726f60792029c26e540cf49ad2b8e759db4a4cf
-subject: a
+commit: 3240065f8ba9e506f563196fe7b4b5f96efe2389
+subject: Release 1.43.0
 paths: forge, tools/modelport, tools/forge_verify.py, devkit/sim, Model_Porter.bat, packaging/workflows/forge.yml, www/forge.html, www/forge-server.html
 Made by dev/sync_repos.py. Edit the source, not this copy.
