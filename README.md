@@ -22,7 +22,7 @@
 
 ## Get it
 
-Download the installer from the [Forge page](https://openvanilla.app/forge.html) or the latest `forge-v*` release of [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/releases). You need your own Vanilla game client (build 5875); Forge reads it and never changes it.
+Download the installer, or the portable zip (unzip it and run `Vanilla Forge.exe`, nothing to install), from the [Forge page](https://openvanilla.app/forge.html) or the latest `forge-v*` release of [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/releases). You need your own Vanilla game client (build 5875); Forge reads it and never changes it.
 
 Your test server runs on your own PC: see [Your own test server](https://openvanilla.app/forge-server.html).
 
@@ -62,6 +62,6 @@ MIT: see [LICENSE](LICENSE).
 
 ## About this repository
 
-This repository is published from **Open Vanilla** (commit `dbe3294e98`: Release 1.45.0). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
+This repository is published from **Open Vanilla** (commit `03b310ea23`: a). Changes are made there and arrive here with each release, so please open issues and pull requests on [Open Vanilla](https://github.com/orionopenwow/OpenVanilla/issues).
 
 World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment. No Blizzard game files are included: you need your own.
